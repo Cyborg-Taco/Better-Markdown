@@ -3,7 +3,6 @@
 import React, { useMemo, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowLeft, Maximize2, Image as ImageIcon } from 'lucide-react';
 import { decodeImagesParam } from '@/utils/url';
 import Lightbox from '@/components/Lightbox';
@@ -83,17 +82,18 @@ function GalleryContent({
   return (
     <div className={styles.container}>
       <nav className={styles.navbar}>
-        <div className={styles.navLeft}>
-          <Image
-            src="/icon1.png"
-            alt="Better Markdown app icon"
-            width={30}
-            height={30}
-            className={styles.logoBadge}
-          />
-          <Link href="/" className={styles.logoText}>
-            Better Markdown
-          </Link>
+        <div className={styles.headerLeft}>
+          <button className={styles.backLink} onClick={handleGoBack} title="Go back to the previous page">
+            <ArrowLeft size={16} />
+            <span>Back</span>
+          </button>
+          <div className={styles.divider} />
+          <div className={styles.titleInfo}>
+            <h1 className={styles.title}>Better Gallery</h1>
+            <span className={styles.countBadge}>
+              {images.length} {images.length === 1 ? 'image' : 'images'}
+            </span>
+          </div>
         </div>
       </nav>
 
