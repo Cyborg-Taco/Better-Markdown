@@ -22,12 +22,6 @@ export default function Lightbox({ images, initialIndex, onClose }: LightboxProp
   const touchEndXRef = useRef<number | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
 
-  // Sync index if initialIndex changes
-  useEffect(() => {
-    setCurrentIndex(initialIndex);
-    setZoom(1);
-  }, [initialIndex]);
-
   // Navigate functions
   const handlePrev = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));

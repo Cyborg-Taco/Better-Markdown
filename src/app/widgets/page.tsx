@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import {
   Plus,
   Trash2,
@@ -14,7 +16,6 @@ import {
   Code,
   RotateCcw,
   Sparkles,
-  ExternalLink,
   Info,
 } from 'lucide-react';
 import Lightbox from '@/components/Lightbox';
@@ -144,12 +145,9 @@ export default function WidgetsPage() {
 
   const [localLightboxIndex, setLocalLightboxIndex] = useState<number | null>(null);
 
-  const [origin, setOrigin] = useState('https://better-markdown.vercel.app');
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setOrigin(window.location.origin);
-    }
-  }, []);
+  const origin = typeof window !== 'undefined'
+    ? window.location.origin
+    : 'https://better-markdown.vercel.app';
 
   const loadSamples = () => setWidgets(SAMPLE_WIDGETS);
 
@@ -273,11 +271,16 @@ export default function WidgetsPage() {
     <div className={styles.container}>
       <nav className={styles.navbar}>
         <div className={styles.navLeft}>
-          <span className={styles.logoBadge}>PRO</span>
-          <span className={styles.logoText}>Better Markdown</span>
-        </div>
-        <div className={styles.navRight}>
-          <a href="/" className={styles.navLink}>← Home</a>
+          <Image
+            src="/icon1.png"
+            alt="Better Markdown app icon"
+            width={30}
+            height={30}
+            className={styles.logoBadge}
+          />
+          <Link href="/" className={styles.logoText}>
+            Better Markdown
+          </Link>
         </div>
       </nav>
 

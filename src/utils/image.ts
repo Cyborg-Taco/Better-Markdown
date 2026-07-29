@@ -68,7 +68,6 @@ export async function fetchAndProcessImage(
     const image = await Jimp.read(buffer);
 
     const originalWidth = image.width;
-    const originalHeight = image.height;
 
     // Resize image if a target width is specified and it's larger than that
     if (targetWidth && originalWidth > targetWidth) {
@@ -76,7 +75,14 @@ export async function fetchAndProcessImage(
     }
 
     // Get the base64 URI
-    const dataUri = await image.getBase64((image.mime || 'image/png') as any);
+    const mimeType = (image.mime || 'image/png') as
+      | 'image/png'
+      | 'image/bmp'
+      | 'image/tiff'
+      | 'image/x-ms-bmp'
+      | 'image/gif'
+      | 'image/jpeg';
+    const dataUri = await image.getBase64(mimeType);
 
     return {
       dataUri,

@@ -15,6 +15,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Better Markdown — Customizable GitHub Image Layouts',
   description: 'Improve GitHub Markdown readme layouts with dynamic SVG badges and native responsive grids that expand into smooth lightbox galleries.',
+  manifest: '/manifest.json',
+  icons: {
+    apple: '/apple-icon.png',
+  },
+  other: {
+    'apple-mobile-web-app-title': 'Better Markdown',
+  },
 };
 
 export default function RootLayout({
@@ -24,6 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Better Markdown" />
+      </head>
       <body>
         {children}
       </body>
